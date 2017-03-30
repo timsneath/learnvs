@@ -52,12 +52,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GuidsList.cs" />
     <Compile Include="LearnToolWindow.cs" />
     <Compile Include="LearnToolWindowCommand.cs" />
     <Compile Include="LearnToolWindowControl.xaml.cs">
       <DependentUpon>LearnToolWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="LearnToolWindowPackage.cs" />
+    <Compile Include="LearnUris.cs" />
+    <Compile Include="PkgCmdIds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -72,13 +75,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
     <VSCTCompile Include="LearnToolWindowPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
     <Content Include="Resources\LearnToolWindowCommand.png" />
     <Content Include="Resources\LearnToolWindowPackage.ico" />
-    <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="LearnToolWindowControl.xaml">

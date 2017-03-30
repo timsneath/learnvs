@@ -7,11 +7,11 @@
              Foreground="{DynamicResource VsBrush.WindowText}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
-             Name="MyToolWindow">
+             Name="LearnVS">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <TextBlock Margin="10" HorizontalAlignment="Center">LearnToolWindow</TextBlock>
-            <Button Content="Click me!" Click="button1_Click" Width="120" Height="80" Name="button1"/>
-        </StackPanel>
+        <ToolBar>
+            
+        </ToolBar>
+        <WebBrowser x:Name="LearnBrowser" Loaded="LearnBrowser_Loaded" />
     </Grid>
 </UserControl>

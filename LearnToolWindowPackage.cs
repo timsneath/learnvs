@@ -48,6 +48,9 @@ namespace LearnVS
         /// </summary>
         public const string PackageGuidString = "423c0e10-e2b1-4123-a47b-bd7367834869";
 
+        // Cache the Menu Command Service since we will use it multiple times
+        private OleMenuCommandService menuService;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LearnToolWindow"/> class.
         /// </summary>
@@ -57,6 +60,29 @@ namespace LearnVS
             // any Visual Studio service because at this point the package object is created but
             // not sited yet inside Visual Studio environment. The place to do all the other
             // initialization is the Initialize method.
+        }
+
+        internal OleMenuCommand DefineCommandHandler(EventHandler handler, CommandID id)
+        {
+            // if the package is zombied, we don't want to add commands
+            if (Zombied)
+                return null;
+
+            // Make sure we have the service
+            if (menuService == null)
+            {
+                // Get the OleCommandService object provided by the MPF; this object is the one
+                // responsible for handling the collection of commands implemented by the package.
+                menuService = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
+            }
+            OleMenuCommand command = null;
+            if (null != menuService)
+            {
+                // Add the command handler
+                command = new OleMenuCommand(handler, id);
+                menuService.AddCommand(command);
+            }
+            return command;
         }
 
         #region Package Members
