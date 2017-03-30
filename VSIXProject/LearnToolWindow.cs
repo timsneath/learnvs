@@ -36,14 +36,30 @@ namespace LearnVS
         {
             base.OnToolWindowCreated();
 
-            CommandID id = new CommandID(GuidsList.guidClientCmdSet, PkgCmdIds.cmdIdHomeToolbarButton);
-            OleMenuCommand command = DefineCommandHandler(new EventHandler(this.HomeButtonClicked), id);
+            CommandID idCS = new CommandID(GuidsList.guidClientCmdSet, PkgCmdIds.cmdIdCSharpTutorialButton);
+            OleMenuCommand commandCS = DefineCommandHandler(new EventHandler(this.CSharpButtonClicked), idCS);
+
+            CommandID idVB = new CommandID(GuidsList.guidClientCmdSet, PkgCmdIds.cmdIdVBTutorialButton);
+            OleMenuCommand commandVB = DefineCommandHandler(new EventHandler(this.VBButtonClicked), idVB);
+
+            CommandID idFS = new CommandID(GuidsList.guidClientCmdSet, PkgCmdIds.cmdIdFSharpTutorialButton);
+            OleMenuCommand commandFS = DefineCommandHandler(new EventHandler(this.FSharpButtonClicked), idFS);
 
         }
 
-        private void HomeButtonClicked(object sender, EventArgs args)
+        private void CSharpButtonClicked(object sender, EventArgs args)
         {
             learnToolWindowControl.BrowserUri = LearnUris.CSharpTutorial;
+        }
+
+        private void VBButtonClicked(object sender, EventArgs args)
+        {
+            learnToolWindowControl.BrowserUri = LearnUris.VBTutorial;
+        }
+
+        private void FSharpButtonClicked(object sender, EventArgs args)
+        {
+            learnToolWindowControl.BrowserUri = LearnUris.FSharpTutorial;
         }
 
         private OleMenuCommand DefineCommandHandler(EventHandler handler, CommandID id)
@@ -60,9 +76,8 @@ namespace LearnVS
 
             // Get the OleCommandService object provided by the base window pane class; this object is the one
             // responsible for handling the collection of commands implemented by the package.
-            OleMenuCommandService menuService = GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
 
-            if (null != menuService)
+            if (GetService(typeof(IMenuCommandService)) is OleMenuCommandService menuService)
             {
                 // Add the command handler
                 menuService.AddCommand(command);
