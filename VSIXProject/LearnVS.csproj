@@ -7,6 +7,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <UseCodebase>true</UseCodebase>
+    <Ngen>true</Ngen>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -73,7 +74,6 @@
     <VSCTCompile Include="LearnToolWindowPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <Content Include="Resources\LearnToolWindowCommand.png" />
     <Content Include="Resources\LearnToolWindowPackage.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -174,8 +174,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />

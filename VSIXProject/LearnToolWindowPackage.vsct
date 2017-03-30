@@ -69,27 +69,18 @@
         </Strings>
       </Button>
 
-
       <!-- The following command will appear on the tool window toolbar -->
-      <Button guid="guidClientCmdSet" id="cmdidRefreshWindowsList" priority="0x100" type="Button">
+      <Button guid="guidClientCmdSet" id="cmdIdHomeToolbarButton" priority="0x100" type="Button">
         <Parent guid="guidClientCmdSet" id="MyToolbarGroup" />
         <Icon guid="ImageCatalogGuid" id="Home" />
         <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>IconAndText</CommandFlag>
         <Strings>
           <ButtonText>Home</ButtonText>
         </Strings>
       </Button>
     </Buttons>
 
-    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
-    <Bitmaps>
-      <!--  The bitmap id is defined in a way that is a little bit different from the others:
-            the declaration starts with a guid for the bitmap strip, then there is the resource id of the
-            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
-            inside a button definition. An important aspect of this declaration is that the element id
-            must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
-      <Bitmap guid="guidImages" href="Resources\LearnToolWindowCommand.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough"/>
-    </Bitmaps>
   </Commands>
 
   <Symbols>
@@ -101,15 +92,6 @@
       <IDSymbol name="LearnToolWindowCommandId" value="0x0100" />
     </GuidSymbol>
 
-    <GuidSymbol name="guidImages" value="{9eea2fc1-adb4-42ef-9a43-f9c274e69f24}" >
-      <IDSymbol name="bmpPic1" value="1" />
-      <IDSymbol name="bmpPic2" value="2" />
-      <IDSymbol name="bmpPicSearch" value="3" />
-      <IDSymbol name="bmpPicX" value="4" />
-      <IDSymbol name="bmpPicArrows" value="5" />
-      <IDSymbol name="bmpPicStrikethrough" value="6" />
-    </GuidSymbol>
-
     <!-- This is the guid used to group toolbar items together -->
     <GuidSymbol name="guidClientCmdSet" value="{52D8872E-7153-47ed-95D5-82D8324AEF19}">
       <!--Menus-->
@@ -117,7 +99,7 @@
       <!--Groups-->
       <IDSymbol name="MyToolbarGroup" value="0x1001" />
       <!--Commands-->
-      <IDSymbol name="cmdidRefreshWindowsList" value="0x2003" />
+      <IDSymbol name="cmdIdHomeToolbarButton" value="0x2003" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

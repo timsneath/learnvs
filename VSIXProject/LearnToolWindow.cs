@@ -21,7 +21,7 @@ namespace LearnVS
             // ToolBar control. Painful, but code that's easy to clone for another project. 
             this.ToolBar = new CommandID(GuidsList.guidClientCmdSet, PkgCmdIds.IDM_MyToolbar);
 
-            // Specify that we want the toolbar at the top of the window
+            // Specify that we want the toolbar at the top of the window (duh!)
             ToolBarLocation = (int)VSTWT_LOCATION.VSTWT_TOP;
 
             // This is the user control hosted by the tool window; Note that, even if this class implements IDisposable,
@@ -36,14 +36,13 @@ namespace LearnVS
         {
             base.OnToolWindowCreated();
 
-            CommandID id = new CommandID(GuidsList.guidClientCmdSet, PkgCmdIds.cmdidRefreshWindowsList);
+            CommandID id = new CommandID(GuidsList.guidClientCmdSet, PkgCmdIds.cmdIdHomeToolbarButton);
             OleMenuCommand command = DefineCommandHandler(new EventHandler(this.HomeButtonClicked), id);
 
         }
 
         private void HomeButtonClicked(object sender, EventArgs args)
         {
-            System.Windows.Forms.MessageBox.Show("Home Button clicked");
             learnToolWindowControl.BrowserUri = LearnUris.CSharpTutorial;
         }
 
