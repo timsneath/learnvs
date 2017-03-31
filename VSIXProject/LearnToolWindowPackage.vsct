@@ -63,20 +63,40 @@
           If you do not want an image next to your command, remove the Icon node /> -->
       <Button guid="guidLearnToolWindowPackageCmdSet" id="LearnToolWindowCommandId" priority="0x0100" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
-        <Icon guid="ImageCatalogGuid" id="WelcomeWebTutorial" />
+        <Icon guid="ImageCatalogGuid" id="HelpTableOfContents" />
         <Strings>
           <ButtonText>Learn Visual Studio</ButtonText>
         </Strings>
       </Button>
 
       <!-- The following command will appear on the tool window toolbar -->
-      <Button guid="guidClientCmdSet" id="cmdIdHomeToolbarButton" priority="0x100" type="Button">
+      <Button guid="guidClientCmdSet" id="cmdIdCSharpTutorialButton" priority="0x100" type="Button">
         <Parent guid="guidClientCmdSet" id="MyToolbarGroup" />
-        <Icon guid="ImageCatalogGuid" id="Home" />
+        <Icon guid="ImageCatalogGuid" id="CSBlankApplication" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <CommandFlag>IconAndText</CommandFlag>
         <Strings>
-          <ButtonText>Home</ButtonText>
+          <ButtonText>C#</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidClientCmdSet" id="cmdIdVBTutorialButton" priority="0x101" type="Button">
+        <Parent guid="guidClientCmdSet" id="MyToolbarGroup" />
+        <Icon guid="ImageCatalogGuid" id="VBBlankApplication" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <ButtonText>VB</ButtonText>
+        </Strings>
+      </Button>
+
+      <Button guid="guidClientCmdSet" id="cmdIdFSharpTutorialButton" priority="0x102" type="Button">
+        <Parent guid="guidClientCmdSet" id="MyToolbarGroup" />
+        <Icon guid="ImageCatalogGuid" id="FSBlankApplication" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <ButtonText>F#</ButtonText>
         </Strings>
       </Button>
     </Buttons>
@@ -99,7 +119,9 @@
       <!--Groups-->
       <IDSymbol name="MyToolbarGroup" value="0x1001" />
       <!--Commands-->
-      <IDSymbol name="cmdIdHomeToolbarButton" value="0x2003" />
+      <IDSymbol name="cmdIdCSharpTutorialButton" value="0x2004" />
+      <IDSymbol name="cmdIdVBTutorialButton" value="0x2005" />
+      <IDSymbol name="cmdIdFSharpTutorialButton" value="0x2006" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
