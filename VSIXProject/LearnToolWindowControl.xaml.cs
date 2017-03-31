@@ -1,23 +1,13 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="LearnToolWindowControl.xaml.cs" company="Company">
-//     Copyright (c) Company.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-using System;
+﻿using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
 
 namespace LearnVS
 {
-    /// <summary>
-    /// Interaction logic for LearnToolWindowControl.
-    /// </summary>
     public partial class LearnToolWindowControl : UserControl
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LearnToolWindowControl"/> class.
-        /// </summary>
         public LearnToolWindowControl()
         {
             this.InitializeComponent();
@@ -29,12 +19,9 @@ namespace LearnVS
             set => this.LearnBrowser.Source = value;
         }
 
-        static LearnToolWindowControl()
-        {
-            // awesome code from http://stackoverflow.com/a/28626667 which 
-            // fixes internal browser for use in this form
-            SetWebBrowserFeatures();
-        }
+        // awesome code from http://stackoverflow.com/a/28626667 which 
+        // fixes internal browser for use in this form
+        static LearnToolWindowControl() => SetWebBrowserFeatures();
 
         static UInt32 GetBrowserEmulationMode()
         {
@@ -58,7 +45,7 @@ namespace LearnVS
                 throw new ApplicationException("Unsupported version of Microsoft Internet Explorer!");
             }
 
-            UInt32 mode = 11000; // Internet Explorer 11. Webpages containing standards-based !DOCTYPE directives are displayed in IE11 Standards mode. 
+            UInt32 mode = 11001; // Internet Explorer 11 Edge mode.
 
             switch (browserVersion)
             {
@@ -111,9 +98,24 @@ namespace LearnVS
 
         }
 
-        private void LearnBrowser_Loaded(object sender, RoutedEventArgs e)
+        private void SetZoom(int zoomLevel)
         {
-            LearnBrowser.Source = LearnUris.CSharpTutorial;
+            const int OLECMDID_OPTICAL_ZOOM = 63;
+            const int OLECMDEXECOPT_DONTPROMPTUSER = 2;
+
+            // code for getting IWebBrowser2 interface from https://weblog.west-wind.com/posts/2016/Aug/22/Detecting-and-Setting-Zoom-Level-in-the-WPF-WebBrowser-Control
+            var browser = (dynamic)LearnBrowser.GetType().
+                GetField("_axIWebBrowser2", BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).
+                GetValue(LearnBrowser);
+
+            // IWebBrowser2::ExecWB documented here: https://msdn.microsoft.com/en-us/library/aa752117(v=vs.85).aspx
+            browser.ExecWB(OLECMDID_OPTICAL_ZOOM, OLECMDEXECOPT_DONTPROMPTUSER, zoomLevel, ref zoomLevel);
         }
+
+        private void LearnBrowser_Loaded(object sender, RoutedEventArgs e) =>
+            LearnBrowser.Source = LearnUris.CSharpTutorial;
+
+        private void LearnBrowser_LoadCompleted(object sender, EventArgs e) => 
+            SetZoom(75);
     }
 }

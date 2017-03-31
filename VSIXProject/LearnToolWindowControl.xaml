@@ -12,6 +12,6 @@
         <ToolBar>
             
         </ToolBar>
-        <WebBrowser x:Name="LearnBrowser" Loaded="LearnBrowser_Loaded" />
+        <WebBrowser x:Name="LearnBrowser" Loaded="LearnBrowser_Loaded" LoadCompleted="LearnBrowser_LoadCompleted" />
     </Grid>
 </UserControl>
