@@ -64,6 +64,7 @@
       <Button guid="guidLearnToolWindowPackageCmdSet" id="LearnToolWindowCommandId" priority="0x0100" type="Button">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
         <Icon guid="ImageCatalogGuid" id="HelpTableOfContents" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
           <ButtonText>Learn Visual Studio</ButtonText>
         </Strings>
